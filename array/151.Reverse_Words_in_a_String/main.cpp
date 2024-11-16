@@ -1,38 +1,39 @@
 #include <iostream>
 #include <string>
-#include <sstream>
-#include <vector>
 
-std::string reverseWords(std::string s)
+using namespace std;
+
+string reverseWords(string s)
 {
-  std::vector<std::string> words;
-  std::stringstream ss(s);
-  std::string temp;
-  while (std::getline(ss, temp, ' '))
+  string result = "";
+  string temp = "";
+  for (int i = 0; i < s.size(); i++)
   {
-    words.push_back(temp);
-  }
-  std::string result = "";
-
-  for (int i = words.size() - 1; i >= 0; i--)
-  {
-    std::cout << words[i] << "|" << std::endl;
-    std::string blank = " ";
-    if (words[i] != "")
+    if (s[i] == ' ')
     {
-      result += words[i] + blank;
+      if (temp != "")
+      {
+        result = " " + temp + result;
+      }
+      temp = "";
+    }
+    else
+    {
+      temp += s[i];
+      if (i == s.size() - 1)
+        result = temp + result;
     }
   }
-  if (result.back() == ' ')
-  {
-    result.pop_back();
-  }
+
+  if (result[0] == ' ')
+    result.erase(result.begin());
+
   return result;
 }
 
 int main()
 {
-  std::string s = "  hello world  ";
-  std::cout << reverseWords(s) << "|" << std::endl;
+  string s = "  hello world  ";
+  cout << reverseWords(s) << "|" << endl;
   return 0;
 }
