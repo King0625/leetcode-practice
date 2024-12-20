@@ -1,70 +1,55 @@
 #include <iostream>
-#include <unordered_map>
+#include <vector>
 #include <string>
+
 using namespace std;
 
 string minWindow(string s, string t) {
-	string result = "";
 	int t_len = t.size();
 	int s_len = s.size();
 	if(s_len < t_len) {
-		return result;
+		return "";
 	}
 
 	if(s == t) {
 		return s;
 	}
 
-	unordered_map<char, int> target_map;
+	vector<int> chars(128, 0);
 	for(char c: t) {
-		if(!target_map.count(c)){
-			target_map[c] = 1;
-		} else {
-			target_map[c]++;
-		}
+		chars[c]++;
 	}
 
-	int left_result = 0;
-	int min_length = 0;
+	int count = t_len;
+	int start = 0;
+	int start_index = 0;
+	int end = 0;
+	int min_length = INT_MAX;
 
-	for(int i = 0; i <= s_len - t_len; i++) {
-		int left = i;
-		int right = i;
+	while(end < s_len) {
+		if(chars[s[end++]]-- > 0) {
+			count--;
+		}
 
-		unordered_map<char,int> test_map(target_map);
-		while(!test_map.empty()) {
-			if(right >= s_len) {
-				right = i;
-				break;
-			}
-			if(test_map.count(s[right])) {
-				if(--test_map[s[right]] == 0) {
-					test_map.erase(s[right]);
-				}
+		while(count == 0) {
+			if(end - start < min_length) {
+				start_index = start;
+				min_length = end - start;
 			}
 
-			right++;
-		}
-		if(right - left != 0) {
-			if(min_length == 0 || right - left < min_length) {
-				min_length = right - left;
-				left_result = left;
-			} 
+			if(chars[s[start++]]++ == 0) {
+				count++;
+			}
 		}
 	}
-
-	if(min_length != 0) {
-		result = s.substr((size_t)left_result, (size_t)min_length);
-	}
-
-	return result;
-
+	
+	return min_length == INT_MAX ? "" : s.substr(start_index, min_length);
 }
 
 
 int main(){
-	string s = "abc";
-	string t = "b";
+	string s = "ADOBECODEBANC";
+	string t = "ABC";
 	string result = minWindow(s, t);
 	cout << result << "\n";
 }
