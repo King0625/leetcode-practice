@@ -6,14 +6,13 @@ using namespace std;
 int maxSubArray(vector<int>& nums) {
 	int max_result = INT_MIN;
 	int length = nums.size();
-	vector<int> dp(length, 0);
-	dp[0] = nums[0];
-	max_result = dp[0];
+	int latest_result = nums[0];
+	max_result = latest_result;
 
 	for(int i = 1; i < length; i++) {
-		dp[i] = max(nums[i], nums[i] + dp[i-1]);
-		if(dp[i] > max_result) {
-			max_result = dp[i];
+		latest_result = max(nums[i], nums[i] + latest_result);
+		if(latest_result > max_result) {
+			max_result = latest_result;
 		}
 	}
 
