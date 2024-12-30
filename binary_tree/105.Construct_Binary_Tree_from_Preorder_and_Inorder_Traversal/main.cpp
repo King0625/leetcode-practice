@@ -19,27 +19,26 @@ private:
     unordered_map<int,int> mapping;
 public:
     TreeNode* build(vector<int>& preorder, int start, int end) {
-        if (start > end)
-            return nullptr;
+		if(start > end) return nullptr;
 
-        int rootVal = preorder[preorderIndex++];
-        TreeNode* root = new TreeNode(rootVal);
+		int rootVal = preorder[preorderIndex++];
+		TreeNode* root = new TreeNode(rootVal);
+		int mid = mapping[rootVal];
 
-        int mid = mapping[rootVal]; // get mid of inroder;
+		root->left = build(preorder, start, mid - 1);
+		root->right = build(preorder, mid + 1, end);
 
-        root->left = build(preorder, start, mid - 1);
-        root->right = build(preorder, mid + 1, end);
-
-        return root;
+		return root;
     }
 
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        preorderIndex = 0;
-        for (int i = 0; i < inorder.size(); i++) {
-            mapping[inorder[i]] = i;
-        }
+		for(int i = 0; i < inorder.size(); i++) {
+			mapping[inorder[i]] = i;
+		}
 
-        return build(preorder, 0, inorder.size() - 1);
+		preorderIndex = 0;
+
+		return build(preorder, 0, inorder.size() - 1);
     }
 };
 
