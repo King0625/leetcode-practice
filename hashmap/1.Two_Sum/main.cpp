@@ -1,34 +1,32 @@
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
 
 vector<int> twoSum(vector<int>& nums, int target) {
-	map<int, int> num_map;
-	for (int i = 0; i < nums.size(); i++) {
+	unordered_map<int, int> num_map;
+
+	int length = nums.size();
+
+	for (int i = 0; i < length; i++) {
+		int sub = target - nums[i];
+		if (num_map.count(sub) && i != num_map[sub]) {
+			return {num_map[sub], i};
+		}
+
 		num_map[nums[i]] = i;
 	}
 
-	vector<int> result;
-	for (int j = 0; j < nums.size(); j++) {
-		int sub = target - nums[j];
-		if (num_map.count(sub) && j != num_map[sub]) {
-			result = {num_map[sub], j};
-			break;
-		}
-	}
-
-	return result;
+	return {-1,-1};
 }
 
 int main() {
-	vector<int> nums = {3, 2, 4};
+	vector<int> nums = {3, 3};
 	int target = 6;
 	vector<int> result = twoSum(nums, target);
 	for (int num : result) {
 		cout << num << " ";
 	}
-	cout << "Hi";
 	return 0;
 }
