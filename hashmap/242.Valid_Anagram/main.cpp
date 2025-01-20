@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -8,25 +8,18 @@ bool isAnagram(string s, string t) {
 	int lenT = t.size();
 	if(lenS != lenT) return false;
 
-	unordered_map<char,int> wordMap;
+	vector<int> wordMap(26,0);
 
 	for(char c: s) {
-		if(!wordMap.count(c)) {
-			wordMap[c] = 1;
-		} else {
-			wordMap[c]++;
-		}
+		wordMap[c - 'a']++;
 	}
 
 	for(char c: t) {
-		if(!wordMap.count(c)) {
+		if(wordMap[c - 'a'] == 0) {
 			return false;
 		}
 
-		wordMap[c]--;
-		if(wordMap[c] == 0) {
-			wordMap.erase(c);
-		}
+		wordMap[c - 'a']--;
 	}
 
 	return true;
