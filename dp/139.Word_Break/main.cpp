@@ -1,38 +1,32 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 #include <unordered_map>
 
 using namespace std;
 
-void helper(bool& breakable, string s, vector<string>& wordDict) {
-	if(breakable == true) return;
-	
-	int length = wordDict.size();
+bool helper(int start, string s, unordered_set<string>& wordSet, vector<int>& dp) {
 	int sLen = s.size();
+	if(start == sLen) return true;
+	if(dp[start] != -1) return dp[start];
 
-	for(int i = 0; i < length; i++) {
-		int wordLen = wordDict[i].size();
-		if(sLen < wordLen) {
-			continue;
-		} else {
-			if(s.substr(0, wordLen) == wordDict[i]) {
-				if(wordLen == sLen) {
-					breakable = true;
-					return;
-				} else {
-					helper(breakable, s.substr(wordLen, sLen), wordDict);
-				}
-			} else {
-				continue;
-			}
+	for(int i = start; i < sLen; i++) {
+		string part = s.substr(start, i - start + 1);
+		if(wordSet.count(part) && helper(i+1, s, wordSet, dp)) {
+			dp[start] = true;
+			return dp[start];
 		}
 	}
+
+	dp[start] = false;
+	return dp[start];
 }
 
 bool wordBreak(string s, vector<string>& wordDict) {
-	bool breakable = false;
-	helper(breakable, s, wordDict);
-	return breakable;
+	unordered_set<string> wordSet(wordDict.begin(), wordDict.end());
+	int sLen = s.size();
+	vector<int> dp(sLen, -1);
+	return helper(0, s, wordSet, dp);
 }
 
 int main(){
