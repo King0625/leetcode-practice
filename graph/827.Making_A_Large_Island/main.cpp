@@ -1,66 +1,76 @@
 #include <iostream>
 #include <vector>
-#include <utility>
+#include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
-const int directions[4][2] = {
-	{0,1},{1,0},{0,-1},{-1,0}
-};
-
-void dfs(vector<vector<int>>& grid, int x, int y, int& area) {
-	area++;
-	grid[x][y] = 0;
+int dfs(vector<vector<int>>& grid, int x, int y, int islandId) {
 	int len = grid.size();
-
-	for(int i = 0; i < 4; i++) {
-		int newX = x + directions[i][0];
-		int newY = y + directions[i][1];
-		if(newX >= 0 && newX < len && newY >= 0 && newY < len && grid[newX][newY] == 1) {
-			dfs(grid, newX, newY, area);
-		} 
+	if(x < 0 || x >= len || y < 0 || y >= len || grid[x][y] != 1) {
+		return 0;
 	}
-}
+	grid[x][y] = islandId;
 
-int countIsland(vector<vector<int>>& grid) {
-	vector<vector<int>> gridCopy = grid;
-	int len = gridCopy.size();
-	int maxArea = -1;
-	for(int i = 0; i < len; i++) {
-		for(int j = 0; j < len; j++) {
-			if(gridCopy[i][j] == 1) {
-				int area = 0;
-				dfs(gridCopy,i,j,area);
-				maxArea = max(maxArea, area);
-			}
-		}
-	}
-
-	return maxArea;
+	return 1 +
+		dfs(grid, x + 1, y, islandId) +
+		dfs(grid, x - 1, y, islandId) +
+		dfs(grid, x, y + 1, islandId) +
+		dfs(grid, x, y - 1, islandId);
 }
 
 int largestIsland(vector<vector<int>>& grid) {
+	unordered_map<int,int> islandSizes;
 	int len = grid.size();
-	vector<pair<int,int>> zeroAreas;
+	int islandId = 2;
 
 	for(int i = 0; i < len; i++) {
 		for(int j = 0; j < len; j++) {
-			if(grid[i][j] == 0) {
-				zeroAreas.push_back(make_pair(i,j));
+			if(grid[i][j] == 1) {
+				islandSizes[islandId] = dfs(grid, i, j, islandId);
+				islandId++;
 			}
 		}
 	}
 
-	int maxArea = countIsland(grid);
+	if(islandSizes.empty()) return 1;
 
-	for(pair<int,int> zeroArea: zeroAreas) {
-		int row = zeroArea.first;
-		int col = zeroArea.second;
-		grid[row][col] = 1;
-		int currentArea = countIsland(grid);
-		maxArea = max(maxArea, currentArea);
+	if(islandSizes.size() == 1) {
+		islandId--;
+		return islandSizes[islandId] == len * len
+			? islandSizes[islandId] : islandSizes[islandId] + 1;
+	}
 
-		grid[row][col] = 0;
+	int maxArea = 1;
+	
+	for(int i = 0; i < len; i++) {
+		for(int j = 0; j < len; j++) {
+			if(grid[i][j] == 0) {
+				int currentArea = 1;
+				unordered_set<int> neighboringIslands;
+				if(i - 1 >= 0 && grid[i-1][j] > 1) {
+					neighboringIslands.insert(grid[i-1][j]);
+				}
+
+				if(i + 1 < len && grid[i+1][j] > 1) {
+					neighboringIslands.insert(grid[i+1][j]);
+				}
+
+				if(j - 1 >= 0 && grid[i][j-1] > 1) {
+					neighboringIslands.insert(grid[i][j-1]);
+				}
+
+				if(j + 1 < len && grid[i][j+1] > 1) {
+					neighboringIslands.insert(grid[i][j+1]);
+				}
+
+				for(int id: neighboringIslands) {
+					currentArea += islandSizes[id];
+				}
+
+				maxArea = max(maxArea, currentArea);
+			}
+		}
 	}
 
 	return maxArea;
