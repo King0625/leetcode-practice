@@ -12,18 +12,24 @@ struct TreeNode {
 	TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-void inorder(TreeNode* root, vector<int>& results) {
-	if(!root) return;
+void inorder(TreeNode* root, int& k, int& ans) {
+	if(!root) {
+		return;
+	}
 
-	if(root->left) inorder(root->left, results);
-	results.push_back(root->val);
-	if(root->right) inorder(root->right, results);
+	inorder(root->left, k, ans);
+	k--;
+	if(k == 0) {
+		ans = root->val;
+		return;
+	}
+	inorder(root->right, k, ans);
 }
 
 int kthSmallest(TreeNode* root, int k) {
-	vector<int> results;
-	inorder(root, results);
-	return results[k-1];
+	int ans = -1;
+	inorder(root, k, ans);
+	return ans;
 }
 
 int main(){
