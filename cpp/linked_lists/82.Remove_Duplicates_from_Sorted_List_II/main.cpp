@@ -36,22 +36,21 @@ ListNode* deleteDuplicates(ListNode* head) {
 	if(!head || !head->next) return head;
 
 	ListNode* dummy = new ListNode(0, head);
+	ListNode* back = dummy;
+	ListNode* front = head;
 
-	ListNode* prev = dummy;
-	ListNode* current = head;
-
-	while(current) {
-		if(current->next && current->val == current->next->val) {
-			while(current->next && current->val == current->next->val) {
-				current = current->next;
+	while(front) {
+		if(front->next && front->val == front->next->val) {
+			while(front->next && front->val == front->next->val) {
+				front = front->next;
 			}
 
-			prev->next = current->next;
+			back->next = front->next;
 		} else {
-			prev = current;
+			back = front;
 		}
 
-		current = current->next;
+		front = front->next;
 	}
 
 	return dummy->next;
