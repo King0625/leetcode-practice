@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package leetcode
 
 type TreeNode struct {
     Val int
@@ -38,19 +36,19 @@ func LevelOrder(root *TreeNode) [][]int {
 	return result
 }
 
-func main() {
-	root := TreeNode{3,nil,nil}
-	root.Left = &TreeNode{9,nil,nil}
-	root.Right = &TreeNode{20,nil,nil}
-	root.Right.Left = &TreeNode{15,nil,nil}
-	root.Right.Right = &TreeNode{7,nil,nil}
-
-	result := LevelOrder(&root)
-
-	for _, levelSlice := range result {
-		for _, el := range levelSlice {
-			fmt.Printf("%d ", el)
-		}
-		fmt.Println("")
-	}
-}
+// func main() {
+// 	root := TreeNode{3,nil,nil}
+// 	root.Left = &TreeNode{9,nil,nil}
+// 	root.Right = &TreeNode{20,nil,nil}
+// 	root.Right.Left = &TreeNode{15,nil,nil}
+// 	root.Right.Right = &TreeNode{7,nil,nil}
+// 
+// 	result := LevelOrder(&root)
+// 
+// 	for _, levelSlice := range result {
+// 		for _, el := range levelSlice {
+// 			fmt.Printf("%d ", el)
+// 		}
+// 		fmt.Println("")
+// 	}
+// }
