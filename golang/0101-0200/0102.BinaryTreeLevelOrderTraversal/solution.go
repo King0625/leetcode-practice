@@ -7,16 +7,17 @@ type TreeNode struct {
 }
 
 func LevelOrder(root *TreeNode) [][]int {
-	result := make([][]int, 0)
+	var result [][]int
+
 	if root == nil {
 		return result
 	}
 
-	q := make([]*TreeNode, 0)
+	var q []*TreeNode
 	q = append(q, root)
 
 	for len(q) != 0 {
-		levelSlice := make([]int, 0)
+		var levelSlice []int
 		qLen := len(q)
 		for i := 0; i < qLen; i++ {
 			node := q[0]
