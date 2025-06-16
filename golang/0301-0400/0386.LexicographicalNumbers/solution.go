@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package leetcode
 
 func lexicalOrder(n int) []int {
 	var result []int
@@ -22,8 +20,3 @@ func lexicalOrder(n int) []int {
 	return result
 }
 
-func main() {
-	n := 113
-	result := lexicalOrder(n)
-	fmt.Println(result)
-}
