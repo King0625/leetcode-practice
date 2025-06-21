@@ -12,16 +12,19 @@ func evalRPN(tokens []string) int {
 			secondNum := stack[len(stack)-1]
 			firstNum := stack[len(stack)-2]
 			stack = stack[:len(stack)-2]
+			var result int
 			switch token {
 			case "+":
-				stack = append(stack, firstNum+secondNum)
+				result = firstNum+secondNum
 			case "-":
-				stack = append(stack, firstNum-secondNum)
+				result = firstNum-secondNum
 			case "*":
-				stack = append(stack, firstNum*secondNum)
+				result = firstNum*secondNum
 			case "/":
-				stack = append(stack, firstNum/secondNum)
+				result = firstNum/secondNum
 			}
+
+			stack = append(stack, result)
 		}
 	}
 
