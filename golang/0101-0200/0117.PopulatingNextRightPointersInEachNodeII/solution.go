@@ -15,11 +15,17 @@ func connect(root *Node) *Node {
 	var queue []*Node
 	queue = append(queue, root)
 
-	for len(queue) > 0 {
+	for len(queue) != 0 {
 		size := len(queue)
-		for range size {
+
+		for i := 0; i < size; i++ {
 			node := queue[0]
 			queue = queue[1:]
+
+            if i < size-1 {
+                node.Next = queue[0]
+            }
+            
 			if node.Left != nil {
 				queue = append(queue, node.Left)
 			}
@@ -28,11 +34,6 @@ func connect(root *Node) *Node {
 				queue = append(queue, node.Right)
 			}
 		}
-
-		for i := 0; i < len(queue)-1; i++ {
-			queue[i].Next = queue[i+1]
-		}
-
 	}
 
 	return root
