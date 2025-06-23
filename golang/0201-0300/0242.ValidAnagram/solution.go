@@ -5,26 +5,20 @@ func isAnagram(s string, t string) bool {
 		return false
 	}
 
-	freq := make(map[rune]int)
+	var freq [26]int
 
 	for _, rs := range s {
-		if _, ok := freq[rs]; !ok {
-			freq[rs] = 1
-		} else {
-			freq[rs]++
-		}
+		at := int(rs - 'a')
+		freq[at]++
 	}
 
 	for _, rt := range t {
-		if _, ok := freq[rt]; !ok {
+		at := int(rt - 'a')
+		if freq[at] == 0 {
 			return false
 		}
 
-		freq[rt]--
-
-		if freq[rt] == 0 {
-			delete(freq, rt)
-		}
+		freq[at]--
 	}
 
 	return true
