@@ -5,25 +5,27 @@ import "fmt"
 func longestConsecutive(nums []int) int {
 	numMap := make(map[int]bool)
 	for _, num := range nums {
-		numMap[num] = false
+		numMap[num] = true
 	}
 
 	result := 0
 
-	for _, num := range nums {
-		diff := 1
-
-		if _, ok := numMap[num]; ok {
-			_, ok := numMap[num+diff]
-			for ok {
-				diff++
-				_, ok = numMap[num+diff]
-			}
-	
-			result = max(result, diff)
-
-		}
+	for num, _ := range numMap {
 		
+		// check if it is the start
+		if !numMap[num-1] {
+			currentNum := num
+			length := 1
+			for numMap[currentNum+1] {
+				length++
+				currentNum++
+			}
+
+			if result < length {
+				result = length
+			}
+		}
+
 	}
 
 	return result
