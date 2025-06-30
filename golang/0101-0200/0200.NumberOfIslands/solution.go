@@ -4,7 +4,7 @@ var direction = [][]int{
 	{1, 0}, {0, 1}, {-1, 0}, {0, -1},
 }
 
-func bfs(row, col int, grid [][]byte) {
+func dfs(row, col int, grid [][]byte) {
 	rows := len(grid)
 	cols := len(grid[0])
 
@@ -15,7 +15,7 @@ func bfs(row, col int, grid [][]byte) {
 		newCol := col + direction[i][1]
 
 		if newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && rune(grid[newRow][newCol]) == '1' {
-			bfs(newRow, newCol, grid)
+			dfs(newRow, newCol, grid)
 		}
 	}
 }
@@ -30,7 +30,7 @@ func numIslands(grid [][]byte) int {
 		for j := 0; j < cols; j++ {
 			if rune(grid[i][j]) == '1' {
 				count++
-				bfs(i, j, grid)
+				dfs(i, j, grid)
 			}
 		}
 	}
