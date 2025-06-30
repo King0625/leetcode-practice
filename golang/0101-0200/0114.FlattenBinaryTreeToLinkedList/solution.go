@@ -9,7 +9,7 @@ type TreeNode struct {
 func flatten(root *TreeNode) {
 	var prevNode *TreeNode
 
-	var preorder func(*TreeNode)
+	var flat func(*TreeNode)
 	flat = func(node *TreeNode) {
 		if node != nil {
 			flat(node.Right)
