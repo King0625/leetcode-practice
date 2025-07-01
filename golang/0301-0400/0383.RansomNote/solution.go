@@ -1,26 +1,20 @@
 package leetcode
 
 func canConstruct(ransomNote string, magazine string) bool {
-	magazineFreq := make(map[rune]int)
+	var magazineFreq [26]int
 
 	for _, rm := range magazine {
-		if _, ok := magazineFreq[rm]; !ok {
-			magazineFreq[rm] = 1
-		} else {
-			magazineFreq[rm]++
-		}
+		at := int(rm - 'a')
+        magazineFreq[at]++
 	}
 
 	for _, rr := range ransomNote {
-		if _, ok := magazineFreq[rr]; !ok {
+		at := int(rr - 'a')
+		if magazineFreq[at] <= 0 {
 			return false
-		}
-
-		magazineFreq[rr]--
-
-		if magazineFreq[rr] == 0 {
-			delete(magazineFreq, rr)
-		}
+		} else {
+            magazineFreq[at]--
+        }
 	}
 
 	return true
