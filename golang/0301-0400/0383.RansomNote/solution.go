@@ -5,7 +5,7 @@ func canConstruct(ransomNote string, magazine string) bool {
 
 	for _, rm := range magazine {
 		at := int(rm - 'a')
-        magazineFreq[at]++
+		magazineFreq[at]++
 	}
 
 	for _, rr := range ransomNote {
@@ -13,8 +13,8 @@ func canConstruct(ransomNote string, magazine string) bool {
 		if magazineFreq[at] <= 0 {
 			return false
 		} else {
-            magazineFreq[at]--
-        }
+			magazineFreq[at]--
+		}
 	}
 
 	return true

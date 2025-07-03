@@ -1,13 +1,13 @@
 package leetcode
 
 type WeightedPath struct {
-	To int
+	To     int
 	Weight float64
 }
 
 func calcEquation(equations [][]string, values []float64, queries [][]string) []float64 {
 	idx := 0
-	variableMap := make(map[string]int) 
+	variableMap := make(map[string]int)
 	for _, equation := range equations {
 		dividend := equation[0]
 		divisor := equation[1]
@@ -27,7 +27,7 @@ func calcEquation(equations [][]string, values []float64, queries [][]string) []
 	for i := 0; i < len(values); i++ {
 		varAt := variableMap[equations[i][0]]
 		varTo := variableMap[equations[i][1]]
-		
+
 		weightedPathOut := WeightedPath{
 			varTo,
 			values[i],
@@ -36,7 +36,7 @@ func calcEquation(equations [][]string, values []float64, queries [][]string) []
 
 		weightedPathIn := WeightedPath{
 			varAt,
-			1/values[i],
+			1 / values[i],
 		}
 		adjList[varTo] = append(adjList[varTo], weightedPathIn)
 	}
@@ -86,4 +86,3 @@ func calcEquation(equations [][]string, values []float64, queries [][]string) []
 	}
 	return result
 }
-

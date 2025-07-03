@@ -19,4 +19,3 @@ func lexicalOrder(n int) []int {
 
 	return result
 }
-
