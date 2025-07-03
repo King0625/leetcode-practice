@@ -22,10 +22,10 @@ func connect(root *Node) *Node {
 			node := queue[0]
 			queue = queue[1:]
 
-            if i < size-1 {
-                node.Next = queue[0]
-            }
-            
+			if i < size-1 {
+				node.Next = queue[0]
+			}
+
 			if node.Left != nil {
 				queue = append(queue, node.Left)
 			}

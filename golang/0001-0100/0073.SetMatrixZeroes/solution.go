@@ -1,6 +1,6 @@
 package leetcode
 
-func setZeroes(matrix [][]int)  {
+func setZeroes(matrix [][]int) {
 	rows, cols := len(matrix), len(matrix[0])
 	var rowToZero, colToZero []int
 	for i := 0; i < rows; i++ {
@@ -24,4 +24,3 @@ func setZeroes(matrix [][]int)  {
 		}
 	}
 }
-

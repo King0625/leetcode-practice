@@ -4,10 +4,10 @@ import "unicode"
 
 func isPalindrome(s string) bool {
 	size := len(s)
-	
+
 	left, right := 0, size-1
 
-	isAlphanumeric := func (r rune) bool {
+	isAlphanumeric := func(r rune) bool {
 		return unicode.IsLetter(r) || unicode.IsDigit(r)
 	}
 
@@ -30,4 +30,3 @@ func isPalindrome(s string) bool {
 
 	return true
 }
-

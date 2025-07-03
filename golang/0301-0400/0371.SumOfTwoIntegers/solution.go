@@ -42,7 +42,7 @@ func getSum(a int, b int) int {
 
 		if oneCount >= 2 {
 			hasCarry = true
-		} else{
+		} else {
 			hasCarry = false
 		}
 

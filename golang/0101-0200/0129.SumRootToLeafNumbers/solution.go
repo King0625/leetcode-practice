@@ -27,4 +27,3 @@ func sumNumbers(root *TreeNode) int {
 	preorder(root, &result, 0)
 	return result
 }
-

@@ -28,4 +28,3 @@ func isValid(s string) bool {
 
 	return len(stack) == 0
 }
-

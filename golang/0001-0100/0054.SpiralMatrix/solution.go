@@ -8,7 +8,7 @@ func spiralOrder(matrix [][]int) []int {
 
 	rounds := 0
 	count := 0
-	total := row*col
+	total := row * col
 	for {
 		if count < total {
 			for i := rounds; i < col-rounds; i++ {
@@ -46,4 +46,3 @@ func spiralOrder(matrix [][]int) []int {
 
 	return result
 }
-

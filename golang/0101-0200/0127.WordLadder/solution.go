@@ -14,7 +14,7 @@ func ladderLength(beginWord string, endWord string, wordList []string) int {
 
 	var queue []string
 	queue = append(queue, beginWord)
-	
+
 	result := 1
 	for len(queue) > 0 {
 		qSize := len(queue)
@@ -42,10 +42,9 @@ func ladderLength(beginWord string, endWord string, wordList []string) int {
 				strRune[j] = oldRune
 			}
 		}
-		
+
 		result++
 	}
 
 	return 0
 }
-

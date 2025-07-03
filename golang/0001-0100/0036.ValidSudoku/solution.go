@@ -18,9 +18,9 @@ func check(row, col int, board [][]byte) bool {
 	gridRow := row / 3
 	gridCol := col / 3
 
-	for i := gridRow*3; i < gridRow*3+3; i++ {
-		for j := gridCol*3; j < gridCol*3+3; j++ {
-			if board[i][j] == board[row][col] && i != row && j != col{
+	for i := gridRow * 3; i < gridRow*3+3; i++ {
+		for j := gridCol * 3; j < gridCol*3+3; j++ {
+			if board[i][j] == board[row][col] && i != row && j != col {
 				return false
 			}
 		}
@@ -43,4 +43,3 @@ func isValidSudoku(board [][]byte) bool {
 
 	return true
 }
-

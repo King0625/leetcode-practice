@@ -1,34 +1,31 @@
 package leetcode
 
 type Trie struct {
-	Val int
+	Val       int
 	EndOfWord bool
-	Children [26]*Trie
+	Children  [26]*Trie
 }
-
 
 func Constructor() Trie {
-	return Trie{ -1,false,[26]*Trie{} }
+	return Trie{-1, false, [26]*Trie{}}
 }
 
-
-func (this *Trie) Insert(word string)  {
+func (this *Trie) Insert(word string) {
 	dummy := this
 	for i := 0; i < len(word); i++ {
 		val := int(rune(word[i]) - 'a')
 		if dummy.Children[val] == nil {
 			trie := Trie{val, false, [26]*Trie{}}
 			dummy.Children[val] = &trie
-		} 
+		}
 
 		if i == len(word)-1 {
 			dummy.Children[val].EndOfWord = true
 		}
 
-        dummy = dummy.Children[val]
+		dummy = dummy.Children[val]
 	}
 }
-
 
 func (this *Trie) Search(word string) bool {
 	dummy := this
@@ -48,8 +45,6 @@ func (this *Trie) Search(word string) bool {
 	return true
 }
 
-
-
 func (this *Trie) StartsWith(prefix string) bool {
 	dummy := this
 	for i := 0; i < len(prefix); i++ {
@@ -63,4 +58,3 @@ func (this *Trie) StartsWith(prefix string) bool {
 
 	return true
 }
-

@@ -4,10 +4,9 @@ import "math/rand"
 
 type RandomizedSet struct {
 	IntMap map[int]int
-	Set []int
-	Len int
+	Set    []int
+	Len    int
 }
-
 
 func Constructor() RandomizedSet {
 	return RandomizedSet{
@@ -16,7 +15,6 @@ func Constructor() RandomizedSet {
 		0,
 	}
 }
-
 
 func (this *RandomizedSet) Insert(val int) bool {
 	if _, ok := this.IntMap[val]; !ok {
@@ -28,7 +26,6 @@ func (this *RandomizedSet) Insert(val int) bool {
 
 	return false
 }
-
 
 func (this *RandomizedSet) Remove(val int) bool {
 	v, ok := this.IntMap[val] // found replacing index
@@ -49,4 +46,3 @@ func (this *RandomizedSet) GetRandom() int {
 	randomIndex := rand.Intn(this.Len)
 	return this.Set[randomIndex]
 }
-

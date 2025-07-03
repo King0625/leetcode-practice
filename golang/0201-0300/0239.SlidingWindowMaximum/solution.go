@@ -1,20 +1,22 @@
 package main
 
 import (
-	"fmt"
 	"container/heap"
+	"fmt"
 )
 
 type Pair struct {
 	Index int
-	Val int
+	Val   int
 }
 
 type IntPairHeap []Pair
 
-func (h IntPairHeap) Len() int           { return len(h) }
-func (h IntPairHeap) Less(i, j int) bool { return h[i].Val > h[j].Val|| (h[i].Val == h[j].Val && h[i].Index < h[j].Index) }
-func (h IntPairHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h IntPairHeap) Len() int { return len(h) }
+func (h IntPairHeap) Less(i, j int) bool {
+	return h[i].Val > h[j].Val || (h[i].Val == h[j].Val && h[i].Index < h[j].Index)
+}
+func (h IntPairHeap) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
 
 func (h *IntPairHeap) Push(x any) {
 	// Push and Pop use pointer receivers because they modify the slice's length,
@@ -32,7 +34,7 @@ func (h *IntPairHeap) Pop() any {
 
 func maxSlidingWindow(nums []int, k int) []int {
 	var result []int
-	h := &IntPairHeap{}  // maxHeap
+	h := &IntPairHeap{} // maxHeap
 	heap.Init(h)
 	for i := 0; i < k; i++ {
 		heap.Push(h, Pair{i, nums[i]})
@@ -63,7 +65,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 }
 
 func main() {
-	nums := []int{-7,-8,7,5,7,1,6,0}
+	nums := []int{-7, -8, 7, 5, 7, 1, 6, 0}
 	k := 4
 	result := maxSlidingWindow(nums, k)
 	fmt.Println(result)

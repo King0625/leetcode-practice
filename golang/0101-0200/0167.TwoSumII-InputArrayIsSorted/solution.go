@@ -11,7 +11,7 @@ func twoSum(numbers []int, target int) []int {
 			result = append(result, left+1, right+1)
 			break
 		} else if sum > target {
-			right--	
+			right--
 		} else if sum < target {
 			left++
 		}
@@ -19,4 +19,3 @@ func twoSum(numbers []int, target int) []int {
 
 	return result
 }
-

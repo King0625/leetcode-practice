@@ -12,4 +12,3 @@ func removeElement(nums []int, val int) int {
 	fmt.Println(nums)
 	return idx
 }
-

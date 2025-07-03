@@ -1,9 +1,9 @@
 package leetcode
 
 type TreeNode struct {
-    Val int
-    Left *TreeNode
-    Right *TreeNode
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }
 
 func rightSideView(root *TreeNode) []int {
@@ -19,7 +19,7 @@ func rightSideView(root *TreeNode) []int {
 		for i := 0; i < qSize; i++ {
 			node := queue[0]
 			queue = queue[1:]
-			if i == qSize - 1 {
+			if i == qSize-1 {
 				result = append(result, node.Val)
 			}
 
@@ -35,4 +35,3 @@ func rightSideView(root *TreeNode) []int {
 
 	return result
 }
-

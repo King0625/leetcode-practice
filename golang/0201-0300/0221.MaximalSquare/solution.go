@@ -25,10 +25,10 @@ func maximalSquare(matrix [][]byte) int {
 
 func main() {
 	matrix := [][]byte{
-		{1,0,1,0,0},
-		{1,0,1,1,1},
-		{1,1,1,1,1},
-		{1,0,0,1,0},
+		{1, 0, 1, 0, 0},
+		{1, 0, 1, 1, 1},
+		{1, 1, 1, 1, 1},
+		{1, 0, 0, 1, 0},
 	}
 
 	fmt.Println(maximalSquare(matrix))

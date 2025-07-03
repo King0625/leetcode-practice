@@ -36,7 +36,6 @@ func reverseString(s string) string {
 	return string(runes)
 }
 
-
 func isPalindrome(numStr string) bool {
 	left, right := 0, len(numStr)-1
 
@@ -57,7 +56,7 @@ func kMirror(k int, n int) int64 {
 	for n > 0 {
 		decimalNumStr := strconv.FormatInt(currentNum, 10)
 		basedNumStr := strconv.FormatInt(currentNum, k)
-		
+
 		if isPalindrome(decimalNumStr) && isPalindrome(basedNumStr) {
 			fmt.Printf("%s ", decimalNumStr)
 			result += currentNum
@@ -70,6 +69,6 @@ func kMirror(k int, n int) int64 {
 }
 
 func main() {
-	k, n := 7,17
-	fmt.Println(kMirror(k,n))
+	k, n := 7, 17
+	fmt.Println(kMirror(k, n))
 }

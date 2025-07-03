@@ -17,7 +17,7 @@ func possibleStringCount(word string) int {
 
 	result := 1
 	for _, count := range letterMap {
-		result += count-1
+		result += count - 1
 	}
 
 	return result

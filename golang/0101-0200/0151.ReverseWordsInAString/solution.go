@@ -7,7 +7,6 @@ import (
 
 func reverseWords(s string) string {
 	wordSlice := strings.Fields(s)
-	slices.Reverse(wordSlice)	
+	slices.Reverse(wordSlice)
 	return strings.Join(wordSlice, " ")
 }
-

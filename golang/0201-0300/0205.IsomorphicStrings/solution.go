@@ -28,4 +28,3 @@ func isIsomorphic(s string, t string) bool {
 
 	return result
 }
-

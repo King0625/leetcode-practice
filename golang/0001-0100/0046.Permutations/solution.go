@@ -6,7 +6,7 @@ func permute(nums []int) [][]int {
 
 	size := len(nums)
 	visited := make([]bool, size)
-	
+
 	var solve func()
 	solve = func() {
 		if len(perm) == size {
@@ -32,4 +32,3 @@ func permute(nums []int) [][]int {
 	solve()
 	return result
 }
-

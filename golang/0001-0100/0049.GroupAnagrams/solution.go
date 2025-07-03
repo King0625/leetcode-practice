@@ -26,13 +26,12 @@ func groupAnagrams(strs []string) [][]string {
 	var result [][]string
 
 	for _, v := range groups {
-        var group []string
-        for _, idx := range v {
-            group = append(group, strs[idx])
-        }
+		var group []string
+		for _, idx := range v {
+			group = append(group, strs[idx])
+		}
 		result = append(result, group)
 	}
 
 	return result
 }
-

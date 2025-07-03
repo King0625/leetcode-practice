@@ -22,7 +22,7 @@ func rotateRight(head *ListNode, k int) *ListNode {
 	dummy = head
 
 	realK := k % listLen
-	
+
 	if realK == 0 {
 		return head
 	}
@@ -47,4 +47,3 @@ func rotateRight(head *ListNode, k int) *ListNode {
 
 	return rotated
 }
-

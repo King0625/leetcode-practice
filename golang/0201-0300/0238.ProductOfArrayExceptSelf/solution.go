@@ -1,7 +1,7 @@
 package leetcode
 
 func productExceptSelf(nums []int) []int {
-  	var zeroCount int
+	var zeroCount int
 
 	productWithoutZero := 1
 	for _, num := range nums {
@@ -24,4 +24,3 @@ func productExceptSelf(nums []int) []int {
 
 	return result
 }
-

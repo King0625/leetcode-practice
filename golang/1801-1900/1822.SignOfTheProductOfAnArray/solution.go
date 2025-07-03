@@ -11,7 +11,7 @@ func arraySign(nums []int) int {
 		}
 	}
 
-	if negativeCount % 2 != 0 {
+	if negativeCount%2 != 0 {
 		return -1
 	}
 
