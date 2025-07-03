@@ -1,7 +1,7 @@
 package leetcode
 
 type Rectangle struct {
-	index int
+	index  int
 	height int
 }
 
@@ -22,10 +22,9 @@ func largestRectangleArea(heights []int) int {
 	}
 
 	for _, val := range stack {
-		area := val.height * (len(heights)-val.index)
+		area := val.height * (len(heights) - val.index)
 		result = max(result, area)
 	}
 
 	return result
 }
-

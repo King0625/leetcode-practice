@@ -17,18 +17,18 @@ func insert(intervals [][]int, newInterval []int) [][]int {
 	}
 	// binary search of start time
 	left, right := 0, len(intervals)-1
-	
+
 	insertPosition := -1
-	for left <= right{
-		mid := (left+right)/2
+	for left <= right {
+		mid := (left + right) / 2
 		midStartTime := intervals[mid][0]
 		if midStartTime == newInterval[0] {
-			insertPosition = mid+1
+			insertPosition = mid + 1
 			break
 		} else if midStartTime < newInterval[0] {
-			left = mid+1
+			left = mid + 1
 		} else {
-			right = mid-1
+			right = mid - 1
 		}
 	}
 
@@ -54,8 +54,6 @@ func insert(intervals [][]int, newInterval []int) [][]int {
 		}
 	}
 
-
-
 	for i := insertPosition; i < len(intervals); i++ {
 		lastResult := result[len(result)-1]
 		if mergedInterval, ok := merge(lastResult, intervals[i]); ok {
@@ -64,8 +62,6 @@ func insert(intervals [][]int, newInterval []int) [][]int {
 			result = append(result, intervals[i])
 		}
 	}
-	
 
 	return result
 }
-

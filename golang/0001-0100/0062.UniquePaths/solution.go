@@ -7,7 +7,7 @@ func uniquePaths(m int, n int) int {
 		grid[i] = make([]int, n)
 		for j := 0; j < n; j++ {
 			if i == 0 && j > 0 {
-				grid[i][j] = grid[i][j-1]	
+				grid[i][j] = grid[i][j-1]
 			} else if j == 0 && i > 0 {
 				grid[i][j] = grid[i-1][j]
 			} else if i > 0 && j > 0 {
@@ -20,4 +20,3 @@ func uniquePaths(m int, n int) int {
 
 	return grid[m-1][n-1]
 }
-

@@ -3,9 +3,9 @@ package leetcode
 import "math"
 
 type TreeNode struct {
-    Val int
-    Left *TreeNode
-    Right *TreeNode
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }
 
 func isValidBST(root *TreeNode) bool {
@@ -25,11 +25,10 @@ func isValidBST(root *TreeNode) bool {
 			return false
 		}
 
-		prev = root.Val 
+		prev = root.Val
 
 		return validate(root.Right)
 	}
 
 	return validate(root)
 }
-

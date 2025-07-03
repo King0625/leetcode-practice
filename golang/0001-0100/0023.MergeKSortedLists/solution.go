@@ -3,8 +3,8 @@ package leetcode
 import "container/heap"
 
 type ListNode struct {
-    Val int
-    Next *ListNode
+	Val  int
+	Next *ListNode
 }
 
 type IntHeap []int
@@ -27,7 +27,6 @@ func (h *IntHeap) Pop() any {
 	return x
 }
 
-
 func mergeKLists(lists []*ListNode) *ListNode {
 	h := &IntHeap{}
 	heap.Init(h)
@@ -38,15 +37,14 @@ func mergeKLists(lists []*ListNode) *ListNode {
 		}
 	}
 
-	newList := ListNode{0,nil}
+	newList := ListNode{0, nil}
 	dummy := &newList
 
 	for h.Len() > 0 {
 		val := heap.Pop(h)
-		dummy.Next = &ListNode{val.(int),nil}
+		dummy.Next = &ListNode{val.(int), nil}
 		dummy = dummy.Next
 	}
 
 	return newList.Next
 }
-

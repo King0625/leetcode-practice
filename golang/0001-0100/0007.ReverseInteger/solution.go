@@ -14,16 +14,16 @@ func reverse(x int) int {
 	var digits []int
 
 	for num > 0 {
-		digits = append(digits, num % 10)
+		digits = append(digits, num%10)
 		num /= 10
 	}
-	
+
 	digitLen := len(digits)
-	power := digitLen-1
+	power := digitLen - 1
 
 	result := 0
 	for power >= 0 {
-		index := digitLen-power-1
+		index := digitLen - power - 1
 		if digits[index] != 0 {
 			result += digits[index] * int(math.Pow10(power))
 		}
@@ -34,11 +34,10 @@ func reverse(x int) int {
 	if isNegative {
 		result *= -1
 	}
-	
+
 	if result > math.MaxInt32 || result < math.MinInt32 {
 		return 0
 	}
 
 	return result
 }
-

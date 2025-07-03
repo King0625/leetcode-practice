@@ -3,7 +3,7 @@ package leetcode
 import "strings"
 
 func simplifyPath(path string) string {
-    basePath := "/"
+	basePath := "/"
 
 	locations := strings.Split(path, "/")
 
@@ -28,4 +28,3 @@ func simplifyPath(path string) string {
 
 	return basePath + result
 }
-
