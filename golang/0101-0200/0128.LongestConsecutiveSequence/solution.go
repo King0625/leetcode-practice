@@ -11,7 +11,7 @@ func longestConsecutive(nums []int) int {
 	result := 0
 
 	for num, _ := range numMap {
-		
+
 		// check if it is the start
 		if !numMap[num-1] {
 			currentNum := num
@@ -32,6 +32,6 @@ func longestConsecutive(nums []int) int {
 }
 
 func main() {
-	nums := []int{1,0,1,2}
+	nums := []int{1, 0, 1, 2}
 	fmt.Println(longestConsecutive(nums))
 }

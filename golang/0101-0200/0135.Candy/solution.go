@@ -15,8 +15,8 @@ func candy(ratings []int) int {
 		} else {
 			candies[i] = 1
 			counter := i
-			for counter > 0 && ratings[counter] < ratings[counter-1] && candies[counter] == candies[counter-1]{
-				
+			for counter > 0 && ratings[counter] < ratings[counter-1] && candies[counter] == candies[counter-1] {
+
 				candies[counter-1] = candies[counter] + 1
 				counter--
 			}
@@ -31,4 +31,3 @@ func candy(ratings []int) int {
 
 	return result
 }
-

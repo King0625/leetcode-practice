@@ -1,9 +1,9 @@
 package leetcode
 
 type TreeNode struct {
-    Val int
-    Left *TreeNode
-    Right *TreeNode
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }
 
 func LevelOrder(root *TreeNode) [][]int {
@@ -43,9 +43,9 @@ func LevelOrder(root *TreeNode) [][]int {
 // 	root.Right = &TreeNode{20,nil,nil}
 // 	root.Right.Left = &TreeNode{15,nil,nil}
 // 	root.Right.Right = &TreeNode{7,nil,nil}
-// 
+//
 // 	result := LevelOrder(&root)
-// 
+//
 // 	for _, levelSlice := range result {
 // 		for _, el := range levelSlice {
 // 			fmt.Printf("%d ", el)
