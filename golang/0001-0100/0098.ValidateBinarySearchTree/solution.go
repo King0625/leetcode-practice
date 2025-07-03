@@ -1,44 +1,35 @@
 package leetcode
 
+import "math"
+
 type TreeNode struct {
     Val int
     Left *TreeNode
     Right *TreeNode
 }
 
-func inOrder(root *TreeNode, ch chan int) {
-	if root != nil {
-		inOrder(root.Left, ch)
-		ch <- root.Val
-		inOrder(root.Right, ch)
-	}
-}
-
-func walk(root *TreeNode, ch chan int) {
-	inOrder(root, ch)
-	defer close(ch)
-}
-
 func isValidBST(root *TreeNode) bool {
-	ch := make(chan int)
+	prev := math.MinInt
+	var validate func(*TreeNode) bool
 
-	go walk(root, ch)
-
-	prevVal, _ := <-ch
-
-	for {
-		val, ok := <-ch
-		if !ok {
-			break
+	validate = func(root *TreeNode) bool {
+		if root == nil {
+			return true
 		}
-		
-		if val < prevVal {
+
+		if !validate(root.Left) {
 			return false
 		}
 
-		prevVal = val
+		if root.Val <= prev {
+			return false
+		}
+
+		prev = root.Val 
+
+		return validate(root.Right)
 	}
 
-	return true
+	return validate(root)
 }
 
