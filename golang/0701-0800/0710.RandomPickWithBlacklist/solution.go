@@ -4,7 +4,7 @@ import "math/rand"
 
 type Solution struct {
 	Size int
-	Set map[int]int
+	Set  map[int]int
 }
 
 func Constructor(n int, blacklist []int) Solution {
@@ -32,7 +32,6 @@ func Constructor(n int, blacklist []int) Solution {
 
 }
 
-
 func (this *Solution) Pick() int {
 	pick := rand.Intn(this.Size)
 	if val, ok := this.Set[pick]; ok {
@@ -41,4 +40,3 @@ func (this *Solution) Pick() int {
 
 	return pick
 }
-
