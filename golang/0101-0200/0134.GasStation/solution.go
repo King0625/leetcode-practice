@@ -1,41 +1,25 @@
-package main
-
-import "fmt"
+package leetcode
 
 func canCompleteCircuit(gas []int, cost []int) int {
 	stops := len(gas)
+
+	totalGas, tank, start := 0,0,0
+
 	for i := 0; i < stops; i++ {
-		if gas[i] < cost[i] {
-			continue
-		}
+		gain := gas[i]-cost[i]
+		totalGas += gain
+		tank += gain
 
-		gasInTank, moved := 0,0
-		idx := i
-		curr := idx
-
-		for moved < stops {
-			gasInTank += gas[curr]
-			if gasInTank < cost[curr] {
-				idx = -1
-				break
-			}
-
-			gasInTank -= cost[curr]
-			curr = (curr+1) % stops
-			moved++
-		}
-
-		if idx != -1 {
-			return idx
+		if tank < 0 {
+			start = i+1
+			tank = 0
 		}
 	}
 
-	return -1
+	if totalGas < 0 {
+		return -1
+	}
+
+	return start
 }
 
-func main() {
-	gas := []int{3,3,4}
-	cost := []int{3,4,4}
-
-	fmt.Println(canCompleteCircuit(gas, cost))
-}
