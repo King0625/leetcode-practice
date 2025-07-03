@@ -3,6 +3,40 @@ package main
 import "fmt"
 import "strconv"
 
+func generateTenPalindromes(from int) []string {
+	var palindromes []string
+
+	// i is the "half" we mirror
+	for i := from; len(palindromes) < 10; i++ {
+		s := strconv.Itoa(i)
+
+		// Odd-length palindrome: e.g. i=12 → "12" + "1" = "121"
+		odd := s + reverseString(s[:len(s)-1])
+		palindromes = append(palindromes, odd)
+
+		// Even-length palindrome: e.g. i=12 → "12" + "21" = "1221"
+		even := s + reverseString(s)
+		palindromes = append(palindromes, even)
+
+		if len(palindromes) >= count {
+			break
+		}
+
+	}
+
+	return palindromes
+}
+
+func reverseString(s string) string {
+	runes := []rune(s)
+	n := len(runes)
+	for i := 0; i < n/2; i++ {
+		runes[i], runes[n-1-i] = runes[n-1-i], runes[i]
+	}
+	return string(runes)
+}
+
+
 func isPalindrome(numStr string) bool {
 	left, right := 0, len(numStr)-1
 
