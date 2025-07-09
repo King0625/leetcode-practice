@@ -65,4 +65,3 @@ func isSymmetric(root *TreeNode) bool {
 
 	return true
 }
-
